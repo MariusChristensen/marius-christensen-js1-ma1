@@ -56,19 +56,21 @@ listOfCats(cats);
 
 // Question 8:
 function createCats(cats) {
+  let html = "";
   for (let i = 0; i < cats.length; i++) {
-    if (cats[i].age !== undefined) {
-      createCats.innerHTML = `<div>${cats}
-                              <h5>${cats.name}</h5>
-                              <p>Age unknown</p>
-                              </div>`;
-    } else {
-      createCats.innerHTML = `<div>${cats}
-                              <h5>${cats.name}</h5>
-                              <p>${cats.age}</p>
-                              </div>`;
+    let catAge = "Age unknown";
+    if (cats[i].age) {
+      catAge = cats[i].age;
     }
+    html += `<div>
+             <h5>${cats[i].name}</h5>
+             <p>${catAge}</p>
+             </div>`;
   }
+  return html;
 }
 
-createCats(cats);
+const newHTML = createCats(cats);
+
+const catContainer = document.querySelector(".cat-container");
+catContainer.innerHTML = newHTML;
